@@ -9,12 +9,17 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
+import android.view.View;
+import android.view.KeyEvent;
+import android.view.KeyCharacterMap;
 import android.widget.FrameLayout;
 import android.widget.VideoView;
 import android.util.Log;
 import android.content.res.AssetFileDescriptor;
+
 
 
 public class AndroidImmersive extends Extension {
@@ -64,6 +69,41 @@ public class AndroidImmersive extends Extension {
 	 * to start interacting with the user.
 	 */
 	@Override public void onResume () {
+		::if (WIN_FULLSCREEN)::::if (ANDROID_TARGET_SDK_VERSION >= 19)::
+		boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+		boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
+		if(Build.VERSION.SDK_INT >= 19) {
+			// devices with immersive mode
+			View decorView = mainActivity.getWindow().getDecorView();
+			decorView.setSystemUiVisibility(
+				View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+				| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+				| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+				| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+				| View.SYSTEM_UI_FLAG_FULLSCREEN
+				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);	
+		}
+		else if (hasBackKey && hasHomeKey && Build.VERSION.SDK_INT >= 16) {
+		    // no navigation soft keys, unless it is enabled in the settings
+		    View decorView = mainActivity.getWindow().getDecorView();
+			decorView.setSystemUiVisibility(
+				View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+				| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+				| View.SYSTEM_UI_FLAG_FULLSCREEN
+				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+				| View.SYSTEM_UI_FLAG_LOW_PROFILE);	
+		}
+		else if(Build.VERSION.SDK_INT >= 15) {
+			// enable low profile in api 15 devices
+			View decorView = mainActivity.getWindow().getDecorView();
+			decorView.setSystemUiVisibility(
+				View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+				| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+				| View.SYSTEM_UI_FLAG_FULLSCREEN
+				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+				| View.SYSTEM_UI_FLAG_LOW_PROFILE);	
+		}
+		::end::::end::
 	}
 	
 	
