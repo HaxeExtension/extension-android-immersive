@@ -1,0 +1,11 @@
+{
+  "name": "extension-android-immersive",
+  "url": "https://github.com/fbricker/extension-android-immersive",
+  "license": "MIT",
+  "tags": ["android","immersive","lime","openfl","immersive mode"],
+  "description": "Lime extension for enabling immersive mode on most android versions.",
+  "version": "1.0.0",
+  "releasenote": "",
+  "contributors": ["fbricker","singmajesty"],
+  "dependencies": { }
+}
