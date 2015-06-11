@@ -6,6 +6,6 @@
   "description": "Lime extension for enabling immersive mode on most android versions.",
   "version": "1.0.0",
   "releasenote": "",
-  "contributors": ["fbricker","singmajesty"],
+  "contributors": ["fbricker"],
   "dependencies": { }
 }
