@@ -33,4 +33,4 @@ The MIT License (MIT) - [LICENSE.md](LICENSE.md)
 
 Copyright &copy; 2015 SempaiGames (http://www.sempaigames.com)
 
-Author: Federico Bricker
+Author: Joacko Bengochea & Federico Bricker
