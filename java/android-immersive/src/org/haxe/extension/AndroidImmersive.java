@@ -2,6 +2,7 @@ package org.haxe.extension;
 
 import java.io.IOException;
 import java.util.Map;
+import java.lang.Runnable;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -10,6 +11,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Build;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.view.View;
@@ -25,7 +27,7 @@ import android.content.res.AssetFileDescriptor;
 public class AndroidImmersive extends Extension {
 	
 
-	
+	private static final int DELAY_TIME = 500;
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode 
 	 * you started it with, the resultCode it returned, and any additional data 
@@ -69,6 +71,36 @@ public class AndroidImmersive extends Extension {
 	 * to start interacting with the user.
 	 */
 	@Override public void onResume () {
+		handleSystemUIHide();
+	}
+	
+	
+	/**
+	 * Called after {@link #onCreate} &mdash; or after {@link #onRestart} when  
+	 * the activity had been stopped, but is now again being displayed to the 
+	 * user.
+	 */
+	@Override public void onStart () {
+		handleSystemUIHide();
+	}
+		
+	/**
+	 * Called when the activity is no longer visible to the user, because 
+	 * another activity has been resumed and is covering this one. 
+	 */
+	@Override public void onStop () {
+	}
+	public static void handleSystemUIHide(){
+		Handler handler = new Handler();
+		Runnable runnable = new Runnable(){
+    		public void run() {
+        		hideSystemUI();
+    		}
+		};
+		handler.postDelayed(runnable, DELAY_TIME);
+	}
+
+	public static void hideSystemUI(){
 		::if (WIN_FULLSCREEN)::::if (ANDROID_TARGET_SDK_VERSION >= 19)::
 		boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
 		boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
@@ -104,22 +136,6 @@ public class AndroidImmersive extends Extension {
 				| View.SYSTEM_UI_FLAG_LOW_PROFILE);	
 		}
 		::end::::end::
-	}
-	
-	
-	/**
-	 * Called after {@link #onCreate} &mdash; or after {@link #onRestart} when  
-	 * the activity had been stopped, but is now again being displayed to the 
-	 * user.
-	 */
-	@Override public void onStart () {
-	}
-		
-	/**
-	 * Called when the activity is no longer visible to the user, because 
-	 * another activity has been resumed and is covering this one. 
-	 */
-	@Override public void onStop () {
 	}
 
 
