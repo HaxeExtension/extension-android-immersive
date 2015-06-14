@@ -17,9 +17,15 @@ haxelib install extension-android-immersive
 
 ###How to Use
 
-To use this extension, simply add the following line in the project.xml
+To use this extension, simply add the next line in the project.xml
 ```xml
 <haxelib name="extension-android-immersive" />
+```
+And target the sdk version 19, by adding the following lines in the project.xml
+```xml
+<section if="android">
+	<android target-sdk-version="19" />
+</section>
 ```
 
 ###Disclaimer
