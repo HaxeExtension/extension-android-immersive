@@ -28,11 +28,6 @@ And target the sdk version 19, by adding the following lines in the project.xml
 </section>
 ```
 
-###Disclaimer
-
-Google is a registered trademark of Google Inc.
-http://unibrander.com/united-states/140279US/google.html
-
 ###License
 
 The MIT License (MIT) - [LICENSE.md](LICENSE.md)
