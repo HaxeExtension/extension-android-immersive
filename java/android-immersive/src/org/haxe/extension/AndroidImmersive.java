@@ -101,7 +101,7 @@ public class AndroidImmersive extends Extension {
 	}
 
 	public static void hideSystemUI(){
-		::if (WIN_FULLSCREEN)::::if (ANDROID_TARGET_SDK_VERSION >= 19)::
+		::if (ANDROID_TARGET_SDK_VERSION >= 19)::
 		boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
 		boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
 		if(Build.VERSION.SDK_INT >= 19) {
@@ -135,7 +135,7 @@ public class AndroidImmersive extends Extension {
 				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
 				| View.SYSTEM_UI_FLAG_LOW_PROFILE);	
 		}
-		::end::::end::
+		::end::
 	}
 
 
