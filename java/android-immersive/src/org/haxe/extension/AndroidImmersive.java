@@ -34,6 +34,7 @@ public class AndroidImmersive extends Extension {
 	 * from it.
 	 */
 	@Override public boolean onActivityResult (int requestCode, int resultCode, Intent data) {
+		Log.i("IMM", "activityResult");
 		return true;
 	}
 
@@ -41,12 +42,31 @@ public class AndroidImmersive extends Extension {
 	 * Called when the activity is starting.
 	 */
 	@Override public void onCreate (Bundle savedInstanceState) {
+		Log.i("IMM", "create");
+		View decorView = mainActivity.getWindow().getDecorView();
+		decorView.setOnSystemUiVisibilityChangeListener (new View.OnSystemUiVisibilityChangeListener() {
+    	@Override
+   		public void onSystemUiVisibilityChange(int visibility) {
+   			if(Build.VERSION.SDK_INT < 16 || Build.VERSION.SDK_INT >= 19){
+   				//super.onSystemUiVisibilityChange(visibility);
+   				return;
+   			}
+        	// Note that system bars will only be "visible" if none of the
+        	// LOW_PROFILE, HIDE_NAVIGATION, or FULLSCREEN flags are set.
+        	if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+            handleSystemUIHide();
+        	} else {
+            handleSystemUIHide();
+        }
+    }
+});
 	}
 	
 	/**
 	 * Perform any final cleanup before an activity is destroyed.
 	 */
 	@Override public void onDestroy () {
+		Log.i("IMM", "destroy");
 	}
 	
 	
@@ -55,6 +75,7 @@ public class AndroidImmersive extends Extension {
 	 * the background, but has not (yet) been killed.
 	 */
 	@Override public void onPause () {
+		Log.i("IMM", "pause");
 	}
 	
 	
@@ -63,6 +84,7 @@ public class AndroidImmersive extends Extension {
 	 * re-displayed to the user (the user has navigated back to it).
 	 */
 	@Override public void onRestart () {
+		Log.i("IMM", "restart");
 	}
 	
 	
@@ -71,6 +93,7 @@ public class AndroidImmersive extends Extension {
 	 * to start interacting with the user.
 	 */
 	@Override public void onResume () {
+		Log.i("IMM", "resume");
 		handleSystemUIHide();
 	}
 	
@@ -81,6 +104,7 @@ public class AndroidImmersive extends Extension {
 	 * user.
 	 */
 	@Override public void onStart () {
+		Log.i("IMM", "start");
 		handleSystemUIHide();
 	}
 		
@@ -89,11 +113,14 @@ public class AndroidImmersive extends Extension {
 	 * another activity has been resumed and is covering this one. 
 	 */
 	@Override public void onStop () {
+		Log.i("IMM", "stop");
 	}
 	public static void handleSystemUIHide(){
+		Log.i("IMM", "handle");
 		Handler handler = new Handler();
 		Runnable runnable = new Runnable(){
     		public void run() {
+    			Log.i("IMM", "run");
         		hideSystemUI();
     		}
 		};
@@ -101,10 +128,12 @@ public class AndroidImmersive extends Extension {
 	}
 
 	public static void hideSystemUI(){
+		Log.i("IMM", "hide");
 		::if (ANDROID_TARGET_SDK_VERSION >= 19)::
 		boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
 		boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
 		if(Build.VERSION.SDK_INT >= 19) {
+			Log.i("IMM", ">19");
 			// devices with immersive mode
 			View decorView = mainActivity.getWindow().getDecorView();
 			decorView.setSystemUiVisibility(
@@ -116,6 +145,7 @@ public class AndroidImmersive extends Extension {
 				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);	
 		}
 		else if (hasBackKey && hasHomeKey && Build.VERSION.SDK_INT >= 16) {
+			Log.i("IMM", ">16");
 		    // no navigation soft keys, unless it is enabled in the settings
 		    View decorView = mainActivity.getWindow().getDecorView();
 			decorView.setSystemUiVisibility(
@@ -126,6 +156,7 @@ public class AndroidImmersive extends Extension {
 				| View.SYSTEM_UI_FLAG_LOW_PROFILE);	
 		}
 		else if(Build.VERSION.SDK_INT >= 15) {
+			Log.i("IMM", ">=15");
 			// enable low profile in api 15 devices
 			View decorView = mainActivity.getWindow().getDecorView();
 			decorView.setSystemUiVisibility(
