@@ -32,7 +32,7 @@ For immersive mode off, add this line in the project.xml
 ```xml
 <set name="IMMERSIVE_OFF" />
 ```
-To set the status bar color, call this function in your code
+To set the status bar color, set this variable in your code
 ```Haxe
 StatusBarColor.statusBarColor = color; // color must be in 0xaarrggbb format
 ```
