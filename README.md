@@ -7,6 +7,7 @@ Lime extension for enabling immersive mode on most Android devices.
 * Immersive mode for Android ICS and later
 * Hiding of status bar and soft navigation keys
 * Low profile mode for devices with soft keys hiding disabled
+* Setting of status bar color when immersive mode is disabled
 
 ###How to Install
 
@@ -26,6 +27,10 @@ And target the sdk version 19, by adding the following lines in the project.xml
 <section if="android">
 	<android target-sdk-version="19" />
 </section>
+```
+For immersive mode off, add this line in the project.xml
+```xml
+<set name="IMMERSIVE_OFF" />
 ```
 
 ###License
