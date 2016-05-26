@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>	
+	<haxedef name="immersiveOff" if="IMMERSIVE_OFF"/>
 	<java path="java/android-immersive/src" if="android" />
-	<android extension="org.haxe.extension.AndroidImmersive" />
+	<android extension="org.haxe.extension.AndroidImmersiveOn" unless="IMMERSIVE_OFF"/>
+	<android extension="org.haxe.extension.AndroidImmersiveOff" if="IMMERSIVE_OFF"/>
 </project>

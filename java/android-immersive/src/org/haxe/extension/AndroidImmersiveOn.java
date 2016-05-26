@@ -15,6 +15,8 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.KeyEvent;
 import android.view.KeyCharacterMap;
 import android.widget.FrameLayout;
@@ -24,7 +26,7 @@ import android.content.res.AssetFileDescriptor;
 
 
 
-public class AndroidImmersive extends Extension {
+public class AndroidImmersiveOn extends Extension {
 	
 
 	private static final int DELAY_TIME = 500;
