@@ -169,11 +169,8 @@ public class AndroidImmersive extends Extension {
 	///////////////////////////////////////////////////////////////////////////
 
 	private static void _setStatusBarColor(final int color){
-		Log.i("EXTENSION-ANDROID-IMMERSIVE", "SETTING COLOR 1: "+color);
 		::if (ANDROID_TARGET_SDK_VERSION >= 21)::
-		Log.i("EXTENSION-ANDROID-IMMERSIVE", "SETTING COLOR 2: "+color);
 		if(Build.VERSION.SDK_INT >= 21) {
-			Log.i("EXTENSION-ANDROID-IMMERSIVE", "SETTING COLOR 3: "+color);
 			try{
 				Window window = Extension.mainActivity.getWindow();
 				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); 
