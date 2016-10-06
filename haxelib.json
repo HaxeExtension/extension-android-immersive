@@ -4,8 +4,8 @@
   "license": "MIT",
   "tags": ["android","immersive","lime","openfl","immersive mode"],
   "description": "Lime extension for enabling immersive mode on most android versions.",
-  "version": "1.0.2",
-  "releasenote": "Support for immersive On/Off, set Status bar color in immersive Off + Fix for API 16-18 devices",
+  "version": "1.1.0",
+  "releasenote": "Support for low profile",
   "contributors": ["fbricker"],
   "dependencies": { }
 }
