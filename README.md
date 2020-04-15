@@ -1,22 +1,22 @@
-#extension-android-immersive
+# extension-android-immersive
 
 Lime extension for enabling immersive mode on most Android devices.
 
-###Main Features
+### Main Features
 
 * Immersive mode for Android ICS and later
 * Hiding of status bar and soft navigation keys
 * Low profile mode for devices with soft keys hiding disabled
 * Setting of status bar color
 
-###How to Install
+### How to Install
 
 To install this library, you can simply get the library from haxelib like this:
 ```bash
 haxelib install extension-android-immersive
 ```
 
-###How to Use
+### How to Use
 
 To use this extension, simply add the next line in the project.xml
 ```xml
@@ -44,7 +44,7 @@ StatusBarColor.setImmersive(); // sets the most immersive mode available
 ```
 
 
-###License
+### License
 
 The MIT License (MIT) - [LICENSE.md](LICENSE.md)
 
